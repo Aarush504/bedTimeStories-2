@@ -31,9 +31,9 @@ submitStory =()=>{
     render(){
         return(
             <View style={styles.container}>
-                <TextInput style={styles.story} placeholder={'What is the name of your story?'}/>
-    <TextInput style={styles.story} placeholder={'who is the author of this story?'}/>
-    <TextInput style={styles.inputBox2}  placeholder={'Write your story here'} multiline={true}/>
+                <TextInput style={styles.story} placeholder={'What is the name of your story?'} onChangeText={text=>this.setState({title: text})}/>
+    <TextInput style={styles.story} placeholder={'who is the author of this story?'} onChangeText={text=>this.setState({author: text})}/>
+    <TextInput style={styles.inputBox2}  placeholder={'Write your story here'} onChangeText={text=>this.setState({story: text})} multiline={true}/>
     <TouchableOpacity style={styles.submit} onPress={this.submitStory}>
         <Text>Submit</Text>
     </TouchableOpacity>
