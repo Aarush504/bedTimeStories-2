@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, ScrollView} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import db from '../config';
@@ -31,6 +31,18 @@ retriveStories=async(text)=>{
             })
         })
     
+}
+
+fetchMoreTransactions=async()=>{
+    var text= this.state.search
+    var enteredText= text.split("")
+    const query= await db.collection("transactions").where('bookId','==',text).startAfter(this.state.lastVisibleTransaction).limit(10).get()
+    query.docs.map((doc)=>{
+      this.setState({
+        allBooks:[...this.state.allBooks,doc.data()],
+        lastBook: doc
+      })
+    })
 }
     render(){
         return(
