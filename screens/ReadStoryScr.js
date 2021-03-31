@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View, ScrollView} from 'react-native';
+import {StyleSheet, Text, TouchableOpacity, View, ScrollView, TextInput} from 'react-native';
 import {SearchBar} from 'react-native-elements';
 import {ScrollView} from 'react-native-gesture-handler';
 import db from '../config';
@@ -48,6 +48,15 @@ fetchMoreTransactions=async()=>{
         return(
             <View style={styles.container}>
                 <View>
+                    <TextInput
+                    style={styles.bar}
+                    placeholder="enter Book Name"
+                    onChangeText={(text)=>{
+                        this.setState({
+                            search:text
+                        })
+                    }}
+                    />
                     <TouchableOpacity
                     style={styles.searchButton}
                     onPress={()=>{
@@ -99,5 +108,12 @@ const styles=StyleSheet.create({
       justifyContent:'center',
       backgroundColor:'green',
       marginTop:40
+    },
+    bar:{
+        borderWidth:2,
+        height:30,
+        width:300,
+        paddingLeft:10,
+        marginTop:40
     }
   })
